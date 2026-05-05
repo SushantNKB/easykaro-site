@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Easykaro — Stop juggling freelancers. Run your store on WhatsApp.</title>
+<meta name="description" content="Easykaro is your high-tech operations team for Meesho, Amazon & Flipkart sellers. Listings, photos, ads, customer queries, returns — all on WhatsApp." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #0F1419;
+  --bg-2: #161C24;
+  --ink: #F5F1E8;
+  --ink-soft: #B8B2A0;
+  --accent: #FF6B35;
+  --accent-soft: #FFB088;
+  --green: #25D366;
+  --line: rgba(245, 241, 232, 0.08);
+  --card: rgba(245, 241, 232, 0.03);
+  --display: 'Fraunces', serif;
+  --body: 'Plus Jakarta Sans', sans-serif;
+  --hindi: 'Hind', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* === NAVIGATION === */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(15, 20, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  padding: 18px 0;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-mark {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  color: var(--bg);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.cta-btn {
+  background: var(--green);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.cta-btn-large {
+  padding: 18px 32px;
+  font-size: 17px;
+}
+
+.cta-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-secondary:hover {
+  border-color: var(--ink);
+}
+
+/* === HERO === */
+.hero {
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+h1 {
+  font-family: var(--display);
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.hindi {
+  font-family: var(--hindi);
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.lede {
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 540px;
+  margin-bottom: 36px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.trust-badge::before {
+  content: '✦';
+  color: var(--accent);
+  font-size: 16px;
+}
+
+/* === PHONE MOCKUP === */
+.phone-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+}
+
+.phone-frame {
+  background: #1a1a1a;
+  border-radius: 42px;
+  padding: 14px;
+  border: 1px solid #333;
+}
+
+.phone-screen {
+  background: #ECE5DD;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-header {
+  background: #075E54;
+  color: white;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  font-family: var(--display);
+}
+
+.wa-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.wa-status {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.wa-chat {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0,0,0,0.02) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.wa-bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #303030;
+  position: relative;
+  animation: bubble-in 0.5s ease-out backwards;
+}
+
+.wa-bubble.sent {
+  background: #DCF8C6;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.wa-bubble.received {
+  background: white;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.wa-bubble:nth-child(1) { animation-delay: 0.3s; }
+.wa-bubble:nth-child(2) { animation-delay: 0.8s; }
+.wa-bubble:nth-child(3) { animation-delay: 1.3s; }
+.wa-bubble:nth-child(4) { animation-delay: 1.8s; }
+.wa-bubble:nth-child(5) { animation-delay: 2.3s; }
+
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wa-time {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+  text-align: right;
+}
+
+.wa-image {
+  width: 180px;
+  height: 100px;
+  background: linear-gradient(135deg, #FF6B35, #FFB088);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.wa-input {
+  background: #f0f0f0;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wa-input-field {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* === PROBLEM SECTION === */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-eyebrow {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.section-hindi {
+  font-family: var(--hindi);
+  font-size: 20px;
+  color: var(--ink-soft);
+  margin-bottom: 60px;
+  font-weight: 500;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.problem-card {
+  padding: 32px 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.problem-card:hover {
+  background: rgba(255, 107, 53, 0.05);
+  border-color: rgba(255, 107, 53, 0.3);
+  transform: translateY(-4px);
+}
+
+.problem-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 107, 53, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.problem-card h3 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.problem-card .hindi-line {
+  font-family: var(--hindi);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* === DELIVERS / WHAT YOU GET === */
+.delivers-section {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.delivers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.deliver-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.deliver-text strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.deliver-text span {
+  font-family: var(--hindi);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* === HOW IT WORKS === */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.step {
+  text-align: left;
+  padding: 32px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  position: relative;
+}
+
+.step-num {
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.step h4 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.step .hindi-line {
+  font-family: var(--hindi);
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* === WHO IT'S FOR === */
+.fit-section {
+  text-align: center;
+}
+
+.fit-list {
+  max-width: 700px;
+  margin: 50px auto 0;
+}
+
+.fit-item {
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.fit-item:last-child {
+  border-bottom: none;
+}
+
+.fit-mark {
+  font-family: var(--display);
+  font-size: 32px;
+  color: var(--accent);
+  font-weight: 600;
+  width: 40px;
+}
+
+.fit-content strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.fit-content span {
+  font-family: var(--hindi);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* === FOUNDERS === */
+.founders-section {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 60px;
+  max-width: 700px;
+}
+
+.founders-text p {
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.founders-text p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.founders-photos {
+  display: flex;
+  gap: 20px;
+}
+
+.founder-card {
+  flex: 1;
+  text-align: center;
+}
+
+.founder-avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--bg);
+  margin-bottom: 16px;
+}
+
+.founder-card h4 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.founder-card span {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* === WAITLIST FORM === */
+.waitlist-section {
+  text-align: center;
+  padding: 120px 0;
+}
+
+.waitlist-form {
+  max-width: 540px;
+  margin: 50px auto 0;
+  background: var(--card);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.form-group label .hindi-label {
+  font-family: var(--hindi);
+  color: var(--ink-soft);
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-left: 6px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkbox-pill {
+  padding: 10px 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.checkbox-pill input {
+  display: none;
+}
+
+.checkbox-pill.active,
+.checkbox-pill:has(input:checked) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #ff5722;
+  transform: translateY(-2px);
+}
+
+.form-promise {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.form-promise strong {
+  color: var(--accent);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* === FOOTER === */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.footer-tagline.hindi-tagline {
+  font-family: var(--hindi);
+}
+
+/* === SUCCESS MESSAGE === */
+.success-msg {
+  display: none;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 24px;
+  font-weight: 600;
+}
+
+.success-msg.show {
+  display: block;
+  animation: slide-up 0.5s ease;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .delivers-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .founders-grid { grid-template-columns: 1fr; gap: 40px; }
+  .section { padding: 80px 0; }
+  .hero { padding: 60px 0 80px; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .hero-cta-group { flex-direction: column; align-items: stretch; }
+  .cta-btn-large { justify-content: center; }
+  .cta-secondary { text-align: center; }
+  h1 { font-size: 38px; }
+  h2 { font-size: 32px; }
+  .waitlist-form { padding: 28px 20px; }
+  .founder-avatar { font-size: 40px; }
+  nav .cta-btn { display: none; }
+}
+
+/* Decorative blob */
+.blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.15), transparent 60%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-1 { top: -200px; right: -100px; }
+.blob-2 { bottom: -100px; left: -200px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">E</span>
+      Easykaro
+    </a>
+    <a href="#waitlist" class="cta-btn">
+      Join Waitlist
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Now in private beta · India</span>
+        <h1><em>Aap apne dhandhe pe dhyan do.</em><br>Baaki sab hum kar lenge.</h1>
+        <p class="hindi">You focus on your business. We run your store.</p>
+        <p class="lede">Easykaro is your high-tech operations team for Meesho, Amazon, and Flipkart sellers. Listings, photos, ads, customer chat, returns — handled by us, with quality no freelancer can match.</p>
+        <div class="hero-cta-group">
+          <a href="#waitlist" class="cta-btn cta-btn-large">
+            Join Waitlist →
+          </a>
+          <a href="#how" class="cta-secondary">See how it works</a>
+        </div>
+        <div class="trust-badge">First 50 sellers get 30 days free at launch</div>
+      </div>
+
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="wa-header">
+              <div class="wa-avatar">E</div>
+              <div>
+                <div class="wa-name">Easykaro</div>
+                <div class="wa-status">online · typing...</div>
+              </div>
+            </div>
+            <div class="wa-chat">
+              <div class="wa-bubble sent">
+                <div class="wa-image">📷</div>
+                Bhaiya, ye saree ki photo daal do listing pe
+                <div class="wa-time">10:42 AM</div>
+              </div>
+              <div class="wa-bubble received">
+                Ho gaya! Studio-quality photo banai aur Meesho + Amazon dono pe daal di. ✨
+                <div class="wa-time">10:43 AM</div>
+              </div>
+              <div class="wa-bubble received">
+                <div class="wa-image" style="background: linear-gradient(135deg, #c084fc, #f472b6);">✨</div>
+                <div class="wa-time">10:43 AM</div>
+              </div>
+              <div class="wa-bubble sent">
+                Wah! Ek customer query bhi hai...
+                <div class="wa-time">10:45 AM</div>
+              </div>
+              <div class="wa-bubble received">
+                Bhej do, main reply draft kar deta hoon. 👍
+                <div class="wa-time">10:45 AM</div>
+              </div>
+            </div>
+            <div class="wa-input">
+              <div class="wa-input-field">Type a message...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="section-eyebrow">The problem</div>
+    <h2>Sound familiar?</h2>
+    <p class="section-hindi">Yeh aapke saath bhi ho raha hai?</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📋</div>
+        <h3>Listings get rejected</h3>
+        <p class="hindi-line">Listing reject ho jaati hai → time aur paisa waste</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⭐</div>
+        <h3>Bad reviews kill ranking</h3>
+        <p class="hindi-line">Bad reviews aate hain → ranking down → sales down</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <h3>Ads burn money</h3>
+        <p class="hindi-line">Ads pe paisa kharch, results kuch nahi</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏰</div>
+        <h3>Late customer replies</h3>
+        <p class="hindi-line">Customer queries late me reply, rating gir jaati hai</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📦</div>
+        <h3>Returns eat margins</h3>
+        <p class="hindi-line">Returns badhte hain, claim file nahi hota</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔄</div>
+        <h3>Managing 5 freelancers</h3>
+        <p class="hindi-line">5 freelancers manage karna ek aur full-time job hai</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERS -->
+<section class="section delivers-section">
+  <div class="container">
+    <div class="section-eyebrow">What you get</div>
+    <h2>Quality no freelancer can match.</h2>
+    <p class="section-hindi">Aisi quality jo koi freelancer de hi nahi sakta.</p>
+    <div class="delivers-grid">
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Zero listing rejections</strong>
+          <span>Listings kabhi reject nahi hongi</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Studio-quality product photos</strong>
+          <span>Studio jaisi product photos</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Higher ratings, fewer bad reviews</strong>
+          <span>Better ratings, kam bad reviews</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Customer queries answered in minutes</strong>
+          <span>Customer queries minutes me reply</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Every return claim filed</strong>
+          <span>Har return ka claim, har paisa wapas</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Ads optimized daily, not weekly</strong>
+          <span>Ads daily optimize, weekly nahi</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Live across all platforms in 4 hours</strong>
+          <span>4 ghante me Meesho, Amazon, Flipkart pe live</span>
+        </div>
+      </div>
+      <div class="deliver-item">
+        <div class="check-icon">✓</div>
+        <div class="deliver-text">
+          <strong>Catalog never blocked</strong>
+          <span>Catalog kabhi block nahi hoga — 24/7 monitoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-eyebrow">How it works</div>
+    <h2>Just chat with us. We do the rest.</h2>
+    <p class="section-hindi">Bas WhatsApp pe baat karo. Baaki sab hum karenge.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Send your product</h4>
+        <p class="hindi-line">Phone se kachhi photo ya product details WhatsApp pe bhejo</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>We do the work</h4>
+        <p class="hindi-line">Hum studio-quality photos + SEO listings banate hain</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Live in 4 hours</h4>
+        <p class="hindi-line">4 ghante me Meesho, Amazon, Flipkart — sab pe live</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Daily updates</h4>
+        <p class="hindi-line">Sales, ads, returns — sab ki daily WhatsApp report</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section fit-section">
+  <div class="container">
+    <div class="section-eyebrow">Who it's for</div>
+    <h2>Built for serious sellers.</h2>
+    <p class="section-hindi">Serious sellers ke liye banaya hai.</p>
+    <div class="fit-list">
+      <div class="fit-item">
+        <div class="fit-mark">✓</div>
+        <div class="fit-content">
+          <strong>You sell on Meesho, Amazon, or Flipkart</strong>
+          <span>Meesho, Amazon, ya Flipkart pe bechte hain</span>
+        </div>
+      </div>
+      <div class="fit-item">
+        <div class="fit-mark">✓</div>
+        <div class="fit-content">
+          <strong>You want growth without managing 10 freelancers</strong>
+          <span>Growth chahte hain, lekin freelancers manage nahi karna</span>
+        </div>
+      </div>
+      <div class="fit-item">
+        <div class="fit-mark">✓</div>
+        <div class="fit-content">
+          <strong>You want quality, not cheap shortcuts</strong>
+          <span>Quality work chahte hain, sasta jugaad nahi</span>
+        </div>
+      </div>
+      <div class="fit-item">
+        <div class="fit-mark">✓</div>
+        <div class="fit-content">
+          <strong>You want one accountable team</strong>
+          <span>Ek aisi team chahte hain jo results ki zimmedari le</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section class="section founders-section">
+  <div class="container">
+    <div class="section-eyebrow">About us</div>
+    <h2>Built by operators who get it.</h2>
+    <p class="section-hindi">Operators ke liye, operators ne banaya.</p>
+    <div class="founders-grid">
+      <div class="founders-text">
+        <p><strong>Sushant and Rahul</strong> — friends for 17 years, full-time founders.</p>
+        <p>We've built and shipped AI products before. We've run real on-ground operations — managed a 400,000 sqft project, ran a Nestle channel partnership for 6 years, led product at companies serving millions of users.</p>
+        <p>We're building Easykaro because Indian sellers deserve better than juggling 10 freelancers. <strong>You focus on your business. We run your store.</strong></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="section waitlist-section" id="waitlist">
+  <div class="blob blob-2"></div>
+  <div class="container">
+    <div class="section-eyebrow">Join the waitlist</div>
+    <h2 style="margin-left: auto; margin-right: auto;">Be the first to try Easykaro.</h2>
+    <p class="section-hindi" style="text-align: center;">Sabse pehle Easykaro try karein.</p>
+
+    <form class="waitlist-form" id="waitlistForm">
+      <div class="form-group">
+        <label>Your Name <span class="hindi-label">/ Aapka Naam</span></label>
+        <input type="text" name="name" required placeholder="Rakesh Kumar" />
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp Number</label>
+        <input type="tel" name="whatsapp" required placeholder="+91 98765 43210" />
+      </div>
+
+      <div class="form-group">
+        <label>What do you sell? <span class="hindi-label">/ Kya bechte hain?</span></label>
+        <input type="text" name="products" required placeholder="Sarees, kurtis, kitchen items..." />
+      </div>
+
+      <div class="form-group">
+        <label>Which platforms? <span class="hindi-label">/ Konse platforms?</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-pill"><input type="checkbox" name="platform" value="Meesho" />Meesho</label>
+          <label class="checkbox-pill"><input type="checkbox" name="platform" value="Amazon" />Amazon</label>
+          <label class="checkbox-pill"><input type="checkbox" name="platform" value="Flipkart" />Flipkart</label>
+          <label class="checkbox-pill"><input type="checkbox" name="platform" value="Other" />Other</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Monthly GMV <span class="hindi-label">/ Mahine ki sales</span></label>
+        <select name="gmv" required>
+          <option value="">Select...</option>
+          <option value="< ₹5L">Less than ₹5 lakh</option>
+          <option value="₹5L - ₹10L">₹5 lakh - ₹10 lakh</option>
+          <option value="₹10L - ₹50L">₹10 lakh - ₹50 lakh</option>
+          <option value="₹50L+">More than ₹50 lakh</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Join Waitlist · Waitlist Join Karein</button>
+
+      <p class="form-promise">
+        <strong>First 50 sellers</strong> get 30 days completely free at launch.<br />
+        Pehle 50 sellers ko launch pe 30 din bilkul free.
+      </p>
+
+      <div class="success-msg" id="successMsg">
+        ✓ You're on the list! We'll WhatsApp you when we launch.<br />
+        <span style="font-family: var(--hindi); font-weight: 500;">Aap waitlist pe hain! Launch hone pe WhatsApp karenge.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Easykaro</div>
+    <p class="footer-tagline">Made in Bengaluru for Indian sellers</p>
+    <p class="footer-tagline hindi-tagline">Bengaluru me banaya, Indian sellers ke liye</p>
+    <p class="footer-tagline" style="margin-top: 16px; font-size: 12px;">© 2026 Easykaro · easykaro.live</p>
+  </div>
+</footer>
+
+<script>
+// Checkbox pill toggle
+document.querySelectorAll('.checkbox-pill').forEach(pill => {
+  const input = pill.querySelector('input');
+  pill.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'INPUT') input.checked = !input.checked;
+    pill.classList.toggle('active', input.checked);
+  });
+});
+
+// Form submit
+document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  // For now: collect data and show success
+  // TODO: replace with Tally.so / Google Forms / your backend webhook
+  console.log('Waitlist signup:', Object.fromEntries(data));
+
+  // Simulate submit
+  document.getElementById('successMsg').classList.add('show');
+  form.querySelector('.submit-btn').style.display = 'none';
+
+  // Optional: send to a webhook
+  // await fetch('YOUR_WEBHOOK_URL', { method: 'POST', body: JSON.stringify(Object.fromEntries(data)) });
+});
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.problem-card, .deliver-item, .step, .fit-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
