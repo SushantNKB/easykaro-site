@@ -86,20 +86,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.logo-mark {
-  width: 30px;
-  height: 30px;
-  background: var(--accent);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  color: var(--bg);
-  font-size: 18px;
-  font-weight: 800;
+  text-decoration: none;
 }
 
 .cta-btn {
@@ -879,8 +866,17 @@ footer {
 <nav>
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">E</span>
-      Easykaro
+      <svg width="140" height="36" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Chat bubble -->
+        <rect x="0" y="0" width="34" height="26" rx="8" fill="#FF6B35"/>
+        <polygon points="6,26 16,26 6,36" fill="#FF6B35"/>
+        <!-- Chat lines -->
+        <rect x="6" y="7" width="20" height="3" rx="1.5" fill="white" opacity="0.95"/>
+        <rect x="6" y="14" width="14" height="3" rx="1.5" fill="white" opacity="0.7"/>
+        <!-- Wordmark -->
+        <text x="42" y="22" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#F5F1E8" letter-spacing="-0.5">Easy</text>
+        <text x="84" y="22" font-family="Georgia, serif" font-size="20" font-weight="400" fill="#FF6B35" letter-spacing="-0.5">karo</text>
+      </svg>
     </a>
     <a href="#waitlist" class="cta-btn">
       Join Waitlist
@@ -1153,7 +1149,7 @@ footer {
     <h2 style="margin-left: auto; margin-right: auto;">Be the first to try Easykaro.</h2>
     <p class="section-hindi" style="text-align: center;">Sabse pehle Easykaro try karein.</p>
 
-    <form class="waitlist-form" id="waitlistForm">
+    <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xojrdkgj" method="POST">
       <div class="form-group">
         <label>Your Name <span class="hindi-label">/ Aapka Naam</span></label>
         <input type="text" name="name" required placeholder="Rakesh Kumar" />
@@ -1208,7 +1204,16 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-logo">Easykaro</div>
+    <div class="footer-logo">
+      <svg width="140" height="36" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="34" height="26" rx="8" fill="#FF6B35"/>
+        <polygon points="6,26 16,26 6,36" fill="#FF6B35"/>
+        <rect x="6" y="7" width="20" height="3" rx="1.5" fill="white" opacity="0.95"/>
+        <rect x="6" y="14" width="14" height="3" rx="1.5" fill="white" opacity="0.7"/>
+        <text x="42" y="22" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#F5F1E8" letter-spacing="-0.5">Easy</text>
+        <text x="84" y="22" font-family="Georgia, serif" font-size="20" font-weight="400" fill="#FF6B35" letter-spacing="-0.5">karo</text>
+      </svg>
+    </div>
     <p class="footer-tagline">Made in Bengaluru for Indian sellers</p>
     <p class="footer-tagline hindi-tagline">Bengaluru me banaya, Indian sellers ke liye</p>
     <p class="footer-tagline" style="margin-top: 16px; font-size: 12px;">© 2026 Easykaro · easykaro.live</p>
@@ -1225,23 +1230,12 @@ document.querySelectorAll('.checkbox-pill').forEach(pill => {
   });
 });
 
-// Form submit
-document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-
-  // For now: collect data and show success
-  // TODO: replace with Tally.so / Google Forms / your backend webhook
-  console.log('Waitlist signup:', Object.fromEntries(data));
-
-  // Simulate submit
+// Form submit — Formspree handles submission, show success on return
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('submitted') === 'true') {
   document.getElementById('successMsg').classList.add('show');
-  form.querySelector('.submit-btn').style.display = 'none';
-
-  // Optional: send to a webhook
-  // await fetch('YOUR_WEBHOOK_URL', { method: 'POST', body: JSON.stringify(Object.fromEntries(data)) });
-});
+  document.querySelector('.submit-btn').style.display = 'none';
+}
 
 // Smooth reveal on scroll
 const observer = new IntersectionObserver((entries) => {
